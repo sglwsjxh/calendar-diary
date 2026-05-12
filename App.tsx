@@ -249,7 +249,7 @@ const App: React.FC = () => {
            <button 
              onClick={toggleTheme}
              className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
-             title={`Theme: ${themeMode}`}
+             title="主题"
            >
              <ThemeIcon size={16} />
            </button>

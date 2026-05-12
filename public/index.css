@@ -14,9 +14,9 @@ body {
   background-color: #faf7f2;
 }
 .text-ink-black { color: #222; }
-.text-ink-red { color: #ff4d5e; }
-.bg-ink-red { background-color: #ff4d5e; }
-.bg-ink-blue { background-color: #3d7dff; }
+.text-ink-red { color: #ff6374 !important; }
+.bg-ink-red { background-color: #ff5a6d !important; }
+.bg-ink-blue { background-color: #5a9bff !important; }
 
 /* Prevent horizontal overflow by default */
 .no-x-scroll {
