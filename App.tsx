@@ -13,7 +13,7 @@ const UpdateModal = React.lazy(() => import('./components/UpdateModal').then(m =
 import { DayData, WEEK_DAYS, DayEvent } from './types';
 import { StorageService } from './services/storageService';
 import { WebDAVService } from './services/webdavService';
-import { Settings, Minus, Square, X, Github, Search, Cloud, RefreshCw } from 'lucide-react';
+import { Settings, Minus, Square, X, Github, Search, Cloud, RefreshCw, Sun, Moon, Monitor } from 'lucide-react';
 import { t, getWeekDay } from './utils/i18n';
 
 const App: React.FC = () => {
@@ -34,6 +34,26 @@ const App: React.FC = () => {
   const [needsAuth, setNeedsAuth] = useState(false);
   const [highlightDate, setHighlightDate] = useState<string | null>(null);
   const [previewWindows, setPreviewWindows] = useState<{ id: string; date: Date }[]>([]);
+  const [themeMode, setThemeMode] = useState<'system' | 'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('calendar-diary-theme-mode');
+    if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
+    return 'system';
+  });
+
+  useEffect(() => {
+    const applyTheme = () => {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldUseDark = themeMode === 'system' ? prefersDark : themeMode === 'dark';
+      document.documentElement.classList.toggle('dark', shouldUseDark);
+    };
+
+    applyTheme();
+    localStorage.setItem('calendar-diary-theme-mode', themeMode);
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', applyTheme);
+    return () => mediaQuery.removeEventListener('change', applyTheme);
+  }, [themeMode]);
 
   // --- Lifecycle ---
   useEffect(() => {
@@ -189,6 +209,11 @@ const App: React.FC = () => {
   const handlePrevMonth = useCallback(() => setCurrentDate(d => subMonths(d, 1)), []);
   const handleNextMonth = useCallback(() => setCurrentDate(d => addMonths(d, 1)), []);
   const handleDateSelect = useCallback((date: Date) => setCurrentDate(date), []);
+  const toggleTheme = useCallback(() => {
+    setThemeMode(prev => prev === 'system' ? 'light' : prev === 'light' ? 'dark' : 'system');
+  }, []);
+
+  const ThemeIcon = themeMode === 'system' ? Monitor : themeMode === 'light' ? Sun : Moon;
 
   return (
     <div className="w-full h-full min-h-0 bg-white flex flex-col overflow-hidden relative">
@@ -225,6 +250,13 @@ const App: React.FC = () => {
           <span>{t('appTitle')}</span>
         </div>
         <div className="flex items-center gap-2 non-draggable">
+           <button 
+             onClick={toggleTheme}
+             className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
+             title={`Theme: ${themeMode}`}
+           >
+             <ThemeIcon size={16} />
+           </button>
            <button 
              onClick={() => {
                const config = WebDAVService.getStoredConfig();

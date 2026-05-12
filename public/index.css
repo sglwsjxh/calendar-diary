@@ -21,3 +21,63 @@ body {
   overflow-x: hidden;
 }
 
+
+/* Theme overrides */
+html.dark body {
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+html.dark .bg-white,
+html.dark .bg-paper,
+html.dark .from-stone-50,
+html.dark .to-stone-100,
+html.dark .bg-stone-50,
+html.dark .bg-red-50 {
+  background: #111827 !important;
+}
+
+html.dark .bg-white\/95 {
+  background: rgba(17, 24, 39, 0.95) !important;
+}
+
+html.dark .text-stone-700,
+html.dark .text-stone-600,
+html.dark .text-stone-500,
+html.dark .text-stone-400,
+html.dark .text-ink-black {
+  color: #d1d5db !important;
+}
+
+html.dark .border-stone-300,
+html.dark .border-stone-200,
+html.dark .border-stone-100,
+html.dark .border-stone-300\/60,
+html.dark .ring-red-100 {
+  border-color: #374151 !important;
+}
+
+html.dark .hover\:bg-stone-200:hover,
+html.dark .hover\:bg-stone-100:hover {
+  background-color: #374151 !important;
+}
+
+html.dark .hover\:text-stone-700:hover,
+html.dark .hover\:text-ink-blue:hover {
+  color: #f9fafb !important;
+}
+
+html.dark .shadow-2xl,
+html.dark .shadow-md,
+html.dark .shadow-sm {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark input,
+html.dark textarea {
+  color: #e5e7eb;
+}
+
+html.dark .backdrop-blur-sm {
+  backdrop-filter: blur(6px);
+}
