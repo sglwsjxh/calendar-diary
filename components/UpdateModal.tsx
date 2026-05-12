@@ -67,7 +67,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({ onClose }) => {
     setErrorMessage('');
     
     try {
-      const response = await fetch('https://api.github.com/repos/trustdev-org/calendar-diary/releases/latest', {
+      const response = await fetch('https://api.github.com/repos/sglwsjxh/calendar-diary/releases/latest', {
         headers: { 'Accept': 'application/vnd.github.v3+json' }
       });
       

@@ -5,7 +5,6 @@ import { DayCell } from './components/DayCell';
 import { DayEditor } from './components/DayEditor';
 import { DayPreview } from './components/DayPreview';
 const SettingsModal = React.lazy(() => import('./components/SettingsModal').then(m => ({ default: m.SettingsModal })));
-const AboutModal = React.lazy(() => import('./components/AboutModal').then(m => ({ default: m.AboutModal })));
 const AuthModal = React.lazy(() => import('./components/AuthModal').then(m => ({ default: m.AuthModal })));
 const SearchModal = React.lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const CloudSyncModal = React.lazy(() => import('./components/CloudSyncModal').then(m => ({ default: m.CloudSyncModal })));
@@ -13,7 +12,7 @@ const UpdateModal = React.lazy(() => import('./components/UpdateModal').then(m =
 import { DayData, WEEK_DAYS, DayEvent } from './types';
 import { StorageService } from './services/storageService';
 import { WebDAVService } from './services/webdavService';
-import { Settings, Minus, Square, X, Github, Search, Cloud, RefreshCw, Sun, Moon, Monitor } from 'lucide-react';
+import { Settings, Minus, Square, X, Search, Cloud, RefreshCw, Sun, Moon, Monitor } from 'lucide-react';
 import { t, getWeekDay } from './utils/i18n';
 
 const App: React.FC = () => {
@@ -25,7 +24,6 @@ const App: React.FC = () => {
   // UI State
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   const [showSettings, setShowSettings] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showCloudSync, setShowCloudSync] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
@@ -289,13 +287,6 @@ const App: React.FC = () => {
              <Search size={16} />
            </button>
            <button 
-             onClick={() => setShowAbout(true)} 
-             className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
-             title={t('about')}
-           >
-             <Github size={16} />
-           </button>
-           <button 
              onClick={() => {
                setSettingsDefaultTab('general');
                setShowSettings(true);
@@ -395,12 +386,6 @@ const App: React.FC = () => {
               onImport={handleImport}
               defaultTab={settingsDefaultTab}
           />
-        </Suspense>
-      )}
-
-      {showAbout && (
-        <Suspense fallback={null}>
-          <AboutModal onClose={() => setShowAbout(false)} />
         </Suspense>
       )}
 
