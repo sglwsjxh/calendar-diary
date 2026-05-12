@@ -10,9 +10,9 @@
 
 **A simple and elegant calendar diary app to record your daily life**
 
-[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue.svg)](https://github.com/trustdev-org/calendar-diary/releases)
+[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue.svg)](https://github.com/sglwsjxh/calendar-diary/releases)
 [![License](https://img.shields.io/badge/license-CC--BY--NC--4.0-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://github.com/trustdev-org/calendar-diary/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://github.com/sglwsjxh/calendar-diary/releases)
 
 [📥 Download](#-installation) • [✨ Usage](#-usage) • [🚀 Development](#-development-guide) • [📝 Changelog](CHANGELOG.md)
 
@@ -43,7 +43,7 @@ CalendarDiary is a cross-platform desktop calendar diary application with a mode
 
 ## ⭐️ Stars 
 
-[![Star History Chart](https://api.star-history.com/svg?repos=trustdev-org/calendar-diary&type=date&legend=top-left)](https://www.star-history.com/#trustdev-org/calendar-diary&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=sglwsjxh/calendar-diary&type=date&legend=top-left)](https://www.star-history.com/#sglwsjxh/calendar-diary&type=date&legend=top-left)
 
 ## 🛠️ Tech Stack
 
@@ -62,7 +62,7 @@ CalendarDiary is a cross-platform desktop calendar diary application with a mode
 
 ### Latest Version: v0.2.0-beta
 
-Go to [Releases](https://github.com/trustdev-org/calendar-diary/releases) page to download the installer for your system:
+Go to [Releases](https://github.com/sglwsjxh/calendar-diary/releases) page to download the installer for your system:
 
 | Platform | File Type | Description |
 |----------|-----------|-------------|
@@ -176,7 +176,7 @@ sudo dpkg -i calendar-diary_0.2.0-beta_amd64.deb
 ### Clone Project
 
 ```bash
-git clone https://github.com/trustdev-org/calendar-diary.git
+git clone https://github.com/sglwsjxh/calendar-diary.git
 cd calendar-diary
 ```
 
@@ -274,8 +274,8 @@ This project is licensed under [CC-BY-NC-4.0](LICENSE).
 
 ## 📮 Contact
 
-- **Issue Feedback**: [GitHub Issues](https://github.com/trustdev-org/calendar-diary/issues)
-- **Project Homepage**: [GitHub Repository](https://github.com/trustdev-org/calendar-diary)
+- **Issue Feedback**: [GitHub Issues](https://github.com/sglwsjxh/calendar-diary/issues)
+- **Project Homepage**: [GitHub Repository](https://github.com/sglwsjxh/calendar-diary)
 
 ---
 
@@ -283,6 +283,6 @@ This project is licensed under [CC-BY-NC-4.0](LICENSE).
 
 **If this project helps you, please give it a ⭐ Star!**
 
-Made with ❤️ by TrustDev
+Made with ❤️ by sglwsjxh
 
 </div>

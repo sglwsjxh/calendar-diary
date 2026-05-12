@@ -5,15 +5,13 @@ import { DayCell } from './components/DayCell';
 import { DayEditor } from './components/DayEditor';
 import { DayPreview } from './components/DayPreview';
 const SettingsModal = React.lazy(() => import('./components/SettingsModal').then(m => ({ default: m.SettingsModal })));
-const AboutModal = React.lazy(() => import('./components/AboutModal').then(m => ({ default: m.AboutModal })));
 const AuthModal = React.lazy(() => import('./components/AuthModal').then(m => ({ default: m.AuthModal })));
 const SearchModal = React.lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const CloudSyncModal = React.lazy(() => import('./components/CloudSyncModal').then(m => ({ default: m.CloudSyncModal })));
-const UpdateModal = React.lazy(() => import('./components/UpdateModal').then(m => ({ default: m.UpdateModal })));
 import { DayData, WEEK_DAYS, DayEvent } from './types';
 import { StorageService } from './services/storageService';
 import { WebDAVService } from './services/webdavService';
-import { Settings, Minus, Square, X, Github, Search, Cloud, RefreshCw } from 'lucide-react';
+import { Settings, Minus, Square, X, Search, Cloud, Sun, Moon, Monitor } from 'lucide-react';
 import { t, getWeekDay } from './utils/i18n';
 
 const App: React.FC = () => {
@@ -25,15 +23,33 @@ const App: React.FC = () => {
   // UI State
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   const [showSettings, setShowSettings] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showCloudSync, setShowCloudSync] = useState(false);
-  const [showUpdate, setShowUpdate] = useState(false);
   const [settingsDefaultTab, setSettingsDefaultTab] = useState<'general' | 'security' | 'webdav'>('general');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [needsAuth, setNeedsAuth] = useState(false);
   const [highlightDate, setHighlightDate] = useState<string | null>(null);
   const [previewWindows, setPreviewWindows] = useState<{ id: string; date: Date }[]>([]);
+  const [themeMode, setThemeMode] = useState<'system' | 'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('calendar-diary-theme-mode');
+    if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
+    return 'system';
+  });
+
+  useEffect(() => {
+    const applyTheme = () => {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldUseDark = themeMode === 'system' ? prefersDark : themeMode === 'dark';
+      document.documentElement.classList.toggle('dark', shouldUseDark);
+    };
+
+    applyTheme();
+    localStorage.setItem('calendar-diary-theme-mode', themeMode);
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', applyTheme);
+    return () => mediaQuery.removeEventListener('change', applyTheme);
+  }, [themeMode]);
 
   // --- Lifecycle ---
   useEffect(() => {
@@ -189,6 +205,11 @@ const App: React.FC = () => {
   const handlePrevMonth = useCallback(() => setCurrentDate(d => subMonths(d, 1)), []);
   const handleNextMonth = useCallback(() => setCurrentDate(d => addMonths(d, 1)), []);
   const handleDateSelect = useCallback((date: Date) => setCurrentDate(date), []);
+  const toggleTheme = useCallback(() => {
+    setThemeMode(prev => prev === 'system' ? 'light' : prev === 'light' ? 'dark' : 'system');
+  }, []);
+
+  const ThemeIcon = themeMode === 'system' ? Monitor : themeMode === 'light' ? Sun : Moon;
 
   return (
     <div className="w-full h-full min-h-0 bg-white flex flex-col overflow-hidden relative">
@@ -226,6 +247,13 @@ const App: React.FC = () => {
         </div>
         <div className="flex items-center gap-2 non-draggable">
            <button 
+             onClick={toggleTheme}
+             className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
+             title="主题"
+           >
+             <ThemeIcon size={16} />
+           </button>
+           <button 
              onClick={() => {
                const config = WebDAVService.getStoredConfig();
                if (config) {
@@ -243,25 +271,11 @@ const App: React.FC = () => {
              <Cloud size={16} />
            </button>
            <button 
-             onClick={() => setShowUpdate(true)} 
-             className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
-             title={t('checkUpdate')}
-           >
-             <RefreshCw size={16} />
-           </button>
-           <button 
              onClick={() => setShowSearch(true)} 
              className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
              title={`${t('searchDiary')} (${navigator.platform.includes('Mac') ? '⌘F' : 'Ctrl+F'})`}
            >
              <Search size={16} />
-           </button>
-           <button 
-             onClick={() => setShowAbout(true)} 
-             className="p-1.5 text-stone-500 hover:bg-stone-200 hover:text-stone-700 rounded-md transition-all"
-             title={t('about')}
-           >
-             <Github size={16} />
            </button>
            <button 
              onClick={() => {
@@ -366,12 +380,6 @@ const App: React.FC = () => {
         </Suspense>
       )}
 
-      {showAbout && (
-        <Suspense fallback={null}>
-          <AboutModal onClose={() => setShowAbout(false)} />
-        </Suspense>
-      )}
-
       {showSearch && (
         <Suspense fallback={null}>
           <SearchModal 
@@ -408,13 +416,6 @@ const App: React.FC = () => {
               if (savedPlans) setMonthlyPlans(savedPlans);
             }}
           />
-        </Suspense>
-      )}
-
-      {/* Update Modal */}
-      {showUpdate && (
-        <Suspense fallback={null}>
-          <UpdateModal onClose={() => setShowUpdate(false)} />
         </Suspense>
       )}
 

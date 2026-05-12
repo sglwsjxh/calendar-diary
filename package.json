@@ -4,15 +4,15 @@
   "version": "0.2.0-beta",
   "description": "一款简洁优雅的日历日记应用",
   "author": {
-    "name": "TrustDev",
-    "email": "admin@trustdev.org"
+    "name": "sglwsjxh",
+    "email": "sglwsjxh@users.noreply.github.com"
   },
   "license": "CC-BY-NC-4.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/trustdev-org/calendar-diary.git"
+    "url": "https://github.com/sglwsjxh/calendar-diary.git"
   },
-  "homepage": "https://github.com/trustdev-org/calendar-diary",
+  "homepage": "https://github.com/sglwsjxh/calendar-diary",
   "main": "dist-electron/main.cjs",
   "scripts": {
     "dev": "vite",
@@ -64,7 +64,7 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "trustdev-org",
+        "owner": "sglwsjxh",
         "repo": "calendar-diary"
       }
     ],
