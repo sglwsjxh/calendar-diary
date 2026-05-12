@@ -1,13 +1,12 @@
 {
   "name": "calendar-diary",
   "private": true,
-  "version": "0.2.0-beta",
-  "description": "一款简洁优雅的日历日记应用",
+  "version": "1.0.0",
+  "description": "一款简洁优雅的日历应用",
   "author": {
-    "name": "sglwsjxh",
-    "email": "sglwsjxh@users.noreply.github.com"
+    "name": "sglwsjxh"
   },
-  "license": "CC-BY-NC-4.0",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/sglwsjxh/calendar-diary.git"
@@ -106,7 +105,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "日历日记"
+      "shortcutName": "日历"
     }
   }
 }
