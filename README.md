@@ -263,6 +263,21 @@ npm run electron:build:linux
 4. 推送到分支：`git push origin feature/AmazingFeature`
 5. 开启 Pull Request
 
+## 🧬 基于上游项目
+
+本项目是基于 [CalendarDiary](https://github.com/trustdev-org/calendar-diary) 
+（作者：TrustDev）的二次开发版本。
+
+### 上游项目信息
+- **项目**: [CalendarDiary](https://github.com/trustdev-org/calendar-diary)
+- **作者**: TrustDev (admin@trustdev.org)
+- **许可证**: CC-BY-NC-4.0
+- **原始仓库**: https://github.com/trustdev-org/calendar-diary
+
+### 本仓库的修改
+- [x] **主题切换系统** — 三态主题（跟随系统/浅色/深色），所有组件暗色适配
+- 更多修改内容请查看 Git 提交历史
+
 ## 📄 许可证
 
 本项目采用 [CC-BY-NC-4.0](LICENSE) 许可证。
@@ -272,11 +287,12 @@ npm run electron:build:linux
 - ✅ 修改 - 重新混合、转换和基于此构建
 
 **条件：**
-- 📝 署名 - 必须给出适当的署名
+- 📝 署名 - 必须给出适当的署名，并说明是否做了修改
 - 🚫 非商业性使用 - 不得用于商业目的
 
 ## 🙏 致谢
 
+- 上游项目：[CalendarDiary](https://github.com/trustdev-org/calendar-diary) by TrustDev
 - 图标库：[Lucide Icons](https://lucide.dev/)
 - UI 框架：[React](https://react.dev/)
 - 桌面框架：[Electron](https://www.electronjs.org/)
